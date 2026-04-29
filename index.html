@@ -121,6 +121,8 @@
             display: none;
         }
         #apod-title { font-size: 1.2vw; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
+        .iss-stat { font-size: 1.3vw; margin-bottom: 0.5vh; display: flex; justify-content: space-between;}
+        .iss-val { font-weight: 700; color: #facc15; font-family: monospace; font-size: 1.5vw; }
         .launch-item { margin-bottom: 1.5vh; display: flex; flex-direction: column; transition: transform 0.2s; cursor: pointer; }
         .launch-item:hover { transform: translateX(0.5vw); }
         .launch-item:active { transform: scale(0.98); }
@@ -381,6 +383,12 @@
                 <img id="apod-img" src="" alt="APOD">
                 <div id="apod-title">Fetching imagery...</div>
             </div>
+            <div class="widget">
+                <h3>Open Notify ISS Tracker</h3>
+                <div class="iss-stat">Latitude: <span class="iss-val" id="iss-lat">--</span></div>
+                <div class="iss-stat">Longitude: <span class="iss-val" id="iss-lon">--</span></div>
+                <div class="iss-stat">Humans in Space: <span class="iss-val" id="iss-astros">--</span></div>
+            </div>
             <div class="widget" style="flex: 1;">
                 <h3>Upcoming Launches</h3>
                 <div id="launch-list">Syncing schedules...</div>
@@ -427,33 +435,50 @@
             });
             await Promise.all(promises);
         }
-        async function fetchWidgets() {
-            // NASA Image of the Day
+        async function updateISS() {
             try {
-                const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.nasa.gov/feeds/iotd-feed/');
-                if (!res.ok) throw new Error('NASA IOTD failed');
-                const data = await res.json();
+                // Open Notify - ISS Location
+                const res = await fetch('http://api.open-notify.org/iss-now.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('iss-lat').innerText = parseFloat(data.iss_position.latitude).toFixed(4);
+                    document.getElementById('iss-lon').innerText = parseFloat(data.iss_position.longitude).toFixed(4);
+                }
+            } catch(e) { console.error('ISS Error:', e); }
+        }
+        async function fetchWidgets() {
+            // NASA APOD API
+            try {
+                const res = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1');
+                if (!res.ok) throw new Error('APOD API failed');
+                const dataArray = await res.json();
+                const data = Array.isArray(dataArray) ? dataArray[0] : dataArray;
                 
-                if (data.status === 'ok' && data.items.length > 0) {
-                    const item = data.items[0];
-                    const imgUrl = (item.enclosure && item.enclosure.link) ? item.enclosure.link : item.thumbnail;
-                    if (imgUrl) {
-                        document.getElementById('apod-img').src = imgUrl;
-                        document.getElementById('apod-img').style.display = 'block';
-                        document.getElementById('apod-title').innerText = item.title;
-                    } else {
-                        throw new Error('No valid image URL found in feed');
-                    }
-                } else {
-                    throw new Error('Invalid feed status');
+                let imgUrl = data.url;
+                if (data.media_type === 'video' && data.thumbnail_url) {
+                    imgUrl = data.thumbnail_url;
+                }
+                
+                if (imgUrl) {
+                    document.getElementById('apod-img').src = imgUrl;
+                    document.getElementById('apod-img').style.display = 'block';
+                    document.getElementById('apod-title').innerText = data.title;
                 }
             } catch(e) { 
-                console.error('IOTD Error:', e);
-                // Fallback image
+                console.error('APOD Error:', e);
                 document.getElementById('apod-img').src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080&auto=format&fit=crop';
                 document.getElementById('apod-img').style.display = 'block';
                 document.getElementById('apod-title').innerText = "Earth from Space (Fallback)";
             }
+            // Open Notify - Astros
+            try {
+                const res = await fetch('http://api.open-notify.org/astros.json');
+                if (res.ok) {
+                    const data = await res.json();
+                    const el = document.getElementById('iss-astros');
+                    if (el) el.innerText = data.number;
+                }
+            } catch(e) { console.error('Astros Error:', e); }
             // Launch Library 2
             try {
                 // Using dev API because prod API limits to 15 requests per hour. Dev API has identical real-world timings.
@@ -577,9 +602,15 @@
             
             // Initial fetches
             fetchWidgets();
+            updateISS();
             setInterval(fetchWidgets, 60000); // refresh widgets every 60s
+            setInterval(updateISS, 1500); // refresh ISS every 1.5s
             
             await fetchNews();
+            // Refresh news quietly in the background every 1 hour
+            setInterval(fetchNews, 60 * 60 * 1000); 
+            // Force a full page reload every 24 hours to prevent browser memory leaks on continuous TV displays
+            setTimeout(() => window.location.reload(), 24 * 60 * 60 * 1000);
             
             // Hide loading overlay
             const overlay = document.getElementById('loading-overlay');
