@@ -121,6 +121,7 @@
             display: none;
         }
         #apod-title { font-size: 1.2vw; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
+        #av-orbit iframe { width: 100% !important; max-height: 25vh !important; }
         .launch-item { margin-bottom: 1.5vh; display: flex; flex-direction: column; transition: transform 0.2s; cursor: pointer; }
         .launch-item:hover { transform: translateX(0.5vw); }
         .launch-item:active { transform: scale(0.98); }
@@ -392,7 +393,7 @@
                     <script src="https://astroviewer.net/widgets/widgets/orbit.js"></script>
                 </div>
             </div>
-            <div class="widget" style="flex: 1;">
+            <div class="widget" style="flex: 1; min-height: 25vh; display: flex; flex-direction: column;">
                 <h3>Upcoming Launches</h3>
                 <div id="launch-list">Syncing schedules...</div>
             </div>
@@ -467,8 +468,11 @@
             }
             // Launch Library 2
             try {
-                // Using dev API because prod API limits to 15 requests per hour. Dev API has identical real-world timings.
-                const res = await fetch('https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=20&format=json');
+                // Try production API first, fallback to dev if rate limited.
+                let res = await fetch('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=15&format=json');
+                if (!res.ok) {
+                    res = await fetch('https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=15&format=json');
+                }
                 if (!res.ok) throw new Error(`API returned ${res.status}`);
                 const data = await res.json();
                 
