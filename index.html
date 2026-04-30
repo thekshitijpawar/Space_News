@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Space News Live</title>
     <!-- Use Google Fonts for clear readability -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@600;800&display=swap"
+        rel="stylesheet">
     <style>
         /* CSS Viewport Units (vw, vh) ensure layout scales proportionally on browser zoom */
         :root {
@@ -21,7 +23,8 @@
             padding: 0;
             width: 100vw;
             height: 100vh;
-            overflow: hidden; /* No scrollbars */
+            overflow: hidden;
+            /* No scrollbars */
             background: linear-gradient(135deg, #020617, #0f172a, #020617);
             background-size: 200% 200%;
             animation: gradientBG 20s ease infinite;
@@ -31,18 +34,28 @@
         }
 
         @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* Animated Starfield */
         #starfield {
             position: absolute;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
-            background-image: 
+            background-image:
                 radial-gradient(1.5px 1.5px at 10vw 20vh, #ffffff, transparent),
                 radial-gradient(1px 1px at 30vw 50vh, #ffffff, transparent),
                 radial-gradient(2px 2px at 50vw 80vh, #ffffff, transparent),
@@ -55,9 +68,20 @@
         }
 
         @keyframes twinkling {
-            0% { opacity: 0.6; transform: scale(1); }
-            50% { opacity: 0.2; transform: scale(1.02); }
-            100% { opacity: 0.6; transform: scale(1); }
+            0% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.2;
+                transform: scale(1.02);
+            }
+
+            100% {
+                opacity: 0.6;
+                transform: scale(1);
+            }
         }
 
         header {
@@ -66,7 +90,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 3vw;
-            background: linear-gradient(to bottom, rgba(2,6,23,0.9), transparent);
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), transparent);
             border-bottom: 0.2vh solid rgba(59, 130, 246, 0.3);
         }
 
@@ -80,9 +104,22 @@
             text-shadow: 0 0 1vw rgba(59, 130, 246, 0.5);
         }
 
-        .clock-area { text-align: right; }
-        #clock { font-size: 2.5vw; font-weight: 700; line-height: 1; }
-        #date { font-size: 1.2vw; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1vw; }
+        .clock-area {
+            text-align: right;
+        }
+
+        #clock {
+            font-size: 2.5vw;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        #date {
+            font-size: 1.2vw;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1vw;
+        }
 
         main {
             display: flex;
@@ -102,11 +139,11 @@
 
         .widget {
             background: var(--panel-bg);
-            border: 0.1vh solid rgba(255,255,255,0.05);
+            border: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-radius: 1vw;
             padding: 2vh 2vw;
             backdrop-filter: blur(1vw);
-            box-shadow: 0 1vh 2vw rgba(0,0,0,0.3);
+            box-shadow: 0 1vh 2vw rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
         }
@@ -118,29 +155,67 @@
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.1vw;
-            border-bottom: 0.2vh solid rgba(255,255,255,0.1);
+            border-bottom: 0.2vh solid rgba(255, 255, 255, 0.1);
             padding-bottom: 0.5vh;
         }
 
-        #apod-container { flex: 1; justify-content: center; }
+        #apod-container {
+            flex: 1;
+            justify-content: center;
+        }
+
         #apod-img {
             width: 100%;
             height: 25vh;
             object-fit: cover;
             border-radius: 0.5vw;
             margin-bottom: 1vh;
-            border: 0.1vh solid rgba(255,255,255,0.2);
+            border: 0.1vh solid rgba(255, 255, 255, 0.2);
             display: none;
         }
-        #apod-title { font-size: 1.2vw; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
 
-        #av-orbit iframe { width: 100% !important; max-height: 25vh !important; }
+        #apod-title {
+            font-size: 1.2vw;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #e2e8f0;
+        }
 
-        .launch-item { margin-bottom: 1.5vh; display: flex; flex-direction: column; transition: transform 0.2s; cursor: pointer; }
-        .launch-item:hover { transform: translateX(0.5vw); }
-        .launch-item:active { transform: scale(0.98); }
-        .launch-name { font-size: 1.2vw; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0;}
-        .launch-time { font-size: 1.1vw; color: #f87171; font-weight: 600;}
+        #av-orbit iframe {
+            width: 100% !important;
+            max-height: 25vh !important;
+        }
+
+        .launch-item {
+            margin-bottom: 1.5vh;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .launch-item:hover {
+            transform: translateX(0.5vw);
+        }
+
+        .launch-item:active {
+            transform: scale(0.98);
+        }
+
+        .launch-name {
+            font-size: 1.2vw;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #e2e8f0;
+        }
+
+        .launch-time {
+            font-size: 1.1vw;
+            color: #f87171;
+            font-weight: 600;
+        }
 
         #launch-list {
             flex: 1;
@@ -149,14 +224,21 @@
             mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
         }
+
         .launch-track {
             display: flex;
             flex-direction: column;
             animation: scrollUp 20s linear infinite;
         }
+
         @keyframes scrollUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
         }
 
         /* Main News Area */
@@ -166,11 +248,11 @@
             flex-direction: column;
             overflow: hidden;
             background: var(--panel-bg);
-            border: 0.1vh solid rgba(255,255,255,0.05);
+            border: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-radius: 1vw;
             padding: 2vh 2vw;
             backdrop-filter: blur(1vw);
-            box-shadow: 0 1vh 2vw rgba(0,0,0,0.3);
+            box-shadow: 0 1vh 2vw rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
@@ -195,7 +277,7 @@
         .progress-container {
             width: 15vw;
             height: 0.6vh;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 0.3vw;
             overflow: hidden;
             margin-bottom: 1vh;
@@ -226,19 +308,20 @@
 
         .news-card {
             display: flex;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 0.8vw;
             border-top: 0.4vh solid var(--accent);
             height: 24vh;
             flex-shrink: 0;
             overflow: hidden;
-            box-shadow: 0 0.5vh 1vw rgba(0,0,0,0.2);
-            border-left: 0.1vh solid rgba(255,255,255,0.05);
-            border-right: 0.1vh solid rgba(255,255,255,0.05);
-            border-bottom: 0.1vh solid rgba(255,255,255,0.05);
+            box-shadow: 0 0.5vh 1vw rgba(0, 0, 0, 0.2);
+            border-left: 0.1vh solid rgba(255, 255, 255, 0.05);
+            border-right: 0.1vh solid rgba(255, 255, 255, 0.05);
+            border-bottom: 0.1vh solid rgba(255, 255, 255, 0.05);
             transition: transform 0.1s;
             cursor: pointer;
         }
+
         .news-card:active {
             transform: scale(0.98);
         }
@@ -247,7 +330,7 @@
             width: 16vw;
             height: 100%;
             object-fit: cover;
-            border-right: 0.1vh solid rgba(255,255,255,0.1);
+            border-right: 0.1vh solid rgba(255, 255, 255, 0.1);
         }
 
         .news-content {
@@ -290,7 +373,10 @@
 
         #loading-overlay {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: var(--bg-dark);
             z-index: 100;
             display: flex;
@@ -302,23 +388,35 @@
             color: var(--accent);
             transition: opacity 1s;
         }
-        
+
         .spinner {
             width: 4vw;
             height: 4vw;
-            border: 0.4vw solid rgba(255,255,255,0.1);
+            border: 0.4vw solid rgba(255, 255, 255, 0.1);
             border-top: 0.4vw solid var(--accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-top: 2vh;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
 
         /* Modal for Touch Interaction */
         #news-modal {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.85);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(0.5vw);
             z-index: 1000;
             display: none;
@@ -327,6 +425,7 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
+
         .modal-content {
             background: var(--bg-dark);
             border: 0.2vh solid var(--accent);
@@ -336,32 +435,63 @@
             padding: 4vh 4vw;
             position: relative;
             overflow-y: auto;
-            box-shadow: 0 2vh 4vw rgba(0,0,0,0.8);
+            box-shadow: 0 2vh 4vw rgba(0, 0, 0, 0.8);
             display: flex;
             flex-direction: column;
         }
+
         .close-btn {
             position: absolute;
-            top: 2vh; right: 2vw;
+            top: 2vh;
+            right: 2vw;
             font-size: 4vw;
             color: #94a3b8;
             cursor: pointer;
             line-height: 1;
             transition: color 0.2s;
         }
-        .close-btn:hover { color: #f8fafc; }
+
+        .close-btn:hover {
+            color: #f8fafc;
+        }
+
         #modal-img {
             width: 100%;
             height: 35vh;
             object-fit: cover;
             border-radius: 0.8vw;
             margin-bottom: 3vh;
-            border: 0.1vh solid rgba(255,255,255,0.1);
+            border: 0.1vh solid rgba(255, 255, 255, 0.1);
         }
-        #modal-title { font-size: 2.5vw; font-family: 'Oswald', sans-serif; margin: 0 0 2vh 0; color: #f8fafc; }
-        #modal-desc { font-size: 1.6vw; color: var(--text-muted); line-height: 1.6; margin: 0 0 3vh 0; }
-        .modal-meta { display: flex; justify-content: space-between; font-size: 1.3vw; color: #64748b; margin-bottom: 3vh; }
-        #modal-source { font-weight: bold; color: var(--accent); text-transform: uppercase; }
+
+        #modal-title {
+            font-size: 2.5vw;
+            font-family: 'Oswald', sans-serif;
+            margin: 0 0 2vh 0;
+            color: #f8fafc;
+        }
+
+        #modal-desc {
+            font-size: 1.6vw;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0 0 3vh 0;
+        }
+
+        .modal-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3vw;
+            color: #64748b;
+            margin-bottom: 3vh;
+        }
+
+        #modal-source {
+            font-weight: bold;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
         #modal-link {
             display: inline-block;
             align-self: flex-start;
@@ -377,13 +507,14 @@
         }
     </style>
 </head>
+
 <body>
     <div id="loading-overlay">
         <div>INITIALIZING SPACE SYSTEMS</div>
         <div class="spinner"></div>
     </div>
     <div id="starfield"></div>
-    
+
     <!-- News Expansion Modal -->
     <div id="news-modal">
         <div class="modal-content">
@@ -398,7 +529,7 @@
             <a id="modal-link" href="#" target="_blank">Read Full Article</a>
         </div>
     </div>
-    
+
     <header>
         <div class="logo">Space News Live</div>
         <div class="clock-area">
@@ -440,7 +571,7 @@
                     <div id="progress-bar"></div>
                 </div>
             </div>
-            
+
             <div class="carousel-viewport">
                 <div id="news-track"></div>
             </div>
@@ -451,17 +582,19 @@
         const categories = [
             { id: 'missions', name: 'Missions', color: '#3b82f6', query: 'mission' },
             { id: 'launches', name: 'Launches', color: '#ef4444', query: 'launch' },
-            { id: 'astronomy', name: 'Astronomy', color: '#8b5cf6', feeds: [
-                'https://earthsky.org/space/feed/',
-                'https://earthsky.org/sun/feed/',
-                'https://skyandtelescope.org/astronomy-news/feed/',
-                'https://skyandtelescope.org/astronomy-news/spacecraft-and-space-missions/feed/',
-                'https://skyandtelescope.org/astronomy-news/exoplanets/feed/',
-                'https://skyandtelescope.org/astronomy-news/galaxies/feed/',
-                'https://skyandtelescope.org/astronomy-news/cosmology/feed/',
-                'https://skyandtelescope.org/astronomy-news/black-holes/feed/',
-                'https://skyandtelescope.org/astronomy-news/stellar-science/feed/'
-            ] },
+            {
+                id: 'astronomy', name: 'Astronomy', color: '#8b5cf6', feeds: [
+                    'https://earthsky.org/space/feed/',
+                    'https://earthsky.org/sun/feed/',
+                    'https://skyandtelescope.org/astronomy-news/feed/',
+                    'https://skyandtelescope.org/astronomy-news/spacecraft-and-space-missions/feed/',
+                    'https://skyandtelescope.org/astronomy-news/exoplanets/feed/',
+                    'https://skyandtelescope.org/astronomy-news/galaxies/feed/',
+                    'https://skyandtelescope.org/astronomy-news/cosmology/feed/',
+                    'https://skyandtelescope.org/astronomy-news/black-holes/feed/',
+                    'https://skyandtelescope.org/astronomy-news/stellar-science/feed/'
+                ]
+            },
             { id: 'science', name: 'Space Science', color: '#10b981', query: 'science' },
             { id: 'tech', name: 'Tech & Satellites', color: '#f59e0b', query: 'satellite' }
         ];
@@ -525,19 +658,24 @@
         async function fetchWidgets() {
             // NASA Image of the Day
             try {
-                const res = await fetch('https://api.nasa.gov/planetary/apod?api_key=DpnrfzvICsDRQYxfkBga3NWVadRkvYHynf8IAbMH');
+                const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.nasa.gov/feeds/iotd-feed/');
                 if (!res.ok) throw new Error('NASA IOTD failed');
                 const data = await res.json();
-                
-                const imgUrl = data.hdurl || data.url;
-                if (imgUrl) {
-                    document.getElementById('apod-img').src = imgUrl;
-                    document.getElementById('apod-img').style.display = 'block';
-                    document.getElementById('apod-title').innerText = data.title || 'Astronomy Picture of the Day';
+
+                if (data.status === 'ok' && data.items.length > 0) {
+                    const item = data.items[0];
+                    const imgUrl = (item.enclosure && item.enclosure.link) ? item.enclosure.link : item.thumbnail;
+                    if (imgUrl) {
+                        document.getElementById('apod-img').src = imgUrl;
+                        document.getElementById('apod-img').style.display = 'block';
+                        document.getElementById('apod-title').innerText = item.title;
+                    } else {
+                        throw new Error('No valid image URL found in feed');
+                    }
                 } else {
-                    throw new Error('No valid image URL found in APOD response');
+                    throw new Error('Invalid feed status');
                 }
-            } catch(e) { 
+            } catch (e) {
                 console.error('IOTD Error:', e);
                 // Fallback image
                 document.getElementById('apod-img').src = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1080&auto=format&fit=crop';
@@ -554,7 +692,7 @@
                 }
                 if (!res.ok) throw new Error(`API returned ${res.status}`);
                 const data = await res.json();
-                
+
                 if (!data.results || data.results.length === 0) {
                     throw new Error("No launch data available");
                 }
@@ -562,7 +700,7 @@
                 let itemsHtml = '';
                 // Filter out TBD (placeholder) launches to only show real-life exact timings
                 const realLaunches = data.results.filter(l => l.status && l.status.abbrev !== 'TBD').slice(0, 10);
-                
+
                 if (realLaunches.length === 0) throw new Error("No confirmed launches");
 
                 realLaunches.forEach(l => {
@@ -576,7 +714,7 @@
                     `;
                 });
                 document.getElementById('launch-list').innerHTML = `<div class="launch-track">${itemsHtml}${itemsHtml}</div>`;
-            } catch(e) { 
+            } catch (e) {
                 console.error('Launch Error:', e);
                 document.getElementById('launch-list').innerHTML = `<div style="padding: 1vw; font-size: 1.1vw; color: #94a3b8;">Schedules temporarily unavailable.</div>`;
             }
@@ -587,16 +725,16 @@
             document.getElementById('category-title').innerText = cat.name;
             document.getElementById('category-title').style.color = cat.color;
             document.getElementById('progress-bar').style.backgroundColor = cat.color;
-            
+
             const track = document.getElementById('news-track');
             track.style.transition = 'none';
             track.style.transform = 'translateY(0)';
             currentSlideIndex = 0;
             progress = 0;
-            
+
             const articles = newsData[cat.id] || [];
             let html = '';
-            
+
             if (articles.length === 0) {
                 html = `<div style="padding: 2vw; font-size: 1.5vw;">No news found for this category at the moment.</div>`;
             } else {
@@ -619,7 +757,7 @@
                     `;
                 });
             }
-            
+
             track.innerHTML = html;
             // Force reflow before re-enabling transition
             void track.offsetWidth;
@@ -635,7 +773,7 @@
             const d = new Date(article.published_at);
             document.getElementById('modal-date').innerText = d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
             document.getElementById('modal-link').href = article.url;
-            
+
             const modal = document.getElementById('news-modal');
             modal.style.display = 'flex';
             setTimeout(() => modal.style.opacity = '1', 10);
@@ -653,7 +791,7 @@
             const articles = newsData[categories[currentCategoryIndex].id] || [];
             // Visible area fits exactly 3 cards. We only slide up if there are hidden cards.
             const maxSlide = Math.max(0, articles.length - 3);
-            
+
             if (currentSlideIndex < maxSlide) {
                 currentSlideIndex++;
                 const track = document.getElementById('news-track');
@@ -677,28 +815,28 @@
         async function init() {
             updateClock();
             setInterval(updateClock, 1000);
-            
+
             // Initial fetches
             fetchWidgets();
             setInterval(fetchWidgets, 60000); // refresh widgets every 60s
-            
+
             await fetchNews();
             // Refresh news quietly in the background every 1 hour
-            setInterval(fetchNews, 60 * 60 * 1000); 
+            setInterval(fetchNews, 60 * 60 * 1000);
             // Force a full page reload every 24 hours to prevent browser memory leaks on continuous TV displays
             setTimeout(() => window.location.reload(), 24 * 60 * 60 * 1000);
-            
+
             // Hide loading overlay
             const overlay = document.getElementById('loading-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => overlay.remove(), 1000);
 
             renderCategory();
-            
+
             // Setup timers
             setInterval(nextSlide, 5000); // Auto scroll down every 5 seconds
             setInterval(nextCategory, 30000); // Switch category every 30 seconds
-            
+
             // Progress bar logic (30 seconds total)
             setInterval(() => {
                 if (!isHovered && !isModalOpen) {
@@ -707,22 +845,22 @@
                     document.getElementById('progress-bar').style.width = `${progress}%`;
                 }
             }, 100);
-            
+
             // Hover to pause
             const newsArea = document.querySelector('.news-area');
             newsArea.addEventListener('mouseenter', () => isHovered = true);
             newsArea.addEventListener('mouseleave', () => isHovered = false);
-            
+
             // Touch Panel Modal Interactions
             document.getElementById('news-track').addEventListener('click', (e) => {
                 const card = e.target.closest('.news-card');
-                if(card) {
+                if (card) {
                     const idx = card.getAttribute('data-idx');
                     const article = newsData[categories[currentCategoryIndex].id][idx];
-                    if(article) openModal(article);
+                    if (article) openModal(article);
                 }
             });
-            
+
             document.getElementById('news-modal').addEventListener('click', (e) => {
                 if (e.target.id === 'news-modal' || e.target.classList.contains('close-btn')) {
                     closeModal();
@@ -733,4 +871,5 @@
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
+
 </html>
