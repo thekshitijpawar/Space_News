@@ -15,6 +15,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
+
         body {
             margin: 0;
             padding: 0;
@@ -28,11 +29,13 @@
             font-family: 'Inter', system-ui, sans-serif;
             box-sizing: border-box;
         }
+
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
         /* Animated Starfield */
         #starfield {
             position: absolute;
@@ -50,11 +53,13 @@
             background-size: 100vw 100vh;
             animation: twinkling 4s infinite ease-in-out;
         }
+
         @keyframes twinkling {
             0% { opacity: 0.6; transform: scale(1); }
             50% { opacity: 0.2; transform: scale(1.02); }
             100% { opacity: 0.6; transform: scale(1); }
         }
+
         header {
             height: 10vh;
             display: flex;
@@ -64,6 +69,7 @@
             background: linear-gradient(to bottom, rgba(2,6,23,0.9), transparent);
             border-bottom: 0.2vh solid rgba(59, 130, 246, 0.3);
         }
+
         .logo {
             font-family: 'Oswald', sans-serif;
             font-size: 3vw;
@@ -73,9 +79,11 @@
             letter-spacing: 0.2vw;
             text-shadow: 0 0 1vw rgba(59, 130, 246, 0.5);
         }
+
         .clock-area { text-align: right; }
         #clock { font-size: 2.5vw; font-weight: 700; line-height: 1; }
         #date { font-size: 1.2vw; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1vw; }
+
         main {
             display: flex;
             height: 90vh;
@@ -83,6 +91,7 @@
             gap: 2vw;
             box-sizing: border-box;
         }
+
         /* Left Sidebar Widgets */
         aside {
             width: 28vw;
@@ -90,6 +99,7 @@
             flex-direction: column;
             gap: 2vh;
         }
+
         .widget {
             background: var(--panel-bg);
             border: 0.1vh solid rgba(255,255,255,0.05);
@@ -100,6 +110,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .widget h3 {
             margin: 0 0 1.5vh 0;
             font-family: 'Oswald', sans-serif;
@@ -110,6 +121,7 @@
             border-bottom: 0.2vh solid rgba(255,255,255,0.1);
             padding-bottom: 0.5vh;
         }
+
         #apod-container { flex: 1; justify-content: center; }
         #apod-img {
             width: 100%;
@@ -121,12 +133,15 @@
             display: none;
         }
         #apod-title { font-size: 1.2vw; font-weight: 600; line-height: 1.4; color: #e2e8f0; }
+
         #av-orbit iframe { width: 100% !important; max-height: 25vh !important; }
+
         .launch-item { margin-bottom: 1.5vh; display: flex; flex-direction: column; transition: transform 0.2s; cursor: pointer; }
         .launch-item:hover { transform: translateX(0.5vw); }
         .launch-item:active { transform: scale(0.98); }
         .launch-name { font-size: 1.2vw; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #e2e8f0;}
         .launch-time { font-size: 1.1vw; color: #f87171; font-weight: 600;}
+
         #launch-list {
             flex: 1;
             overflow: hidden;
@@ -143,6 +158,7 @@
             0% { transform: translateY(0); }
             100% { transform: translateY(-50%); }
         }
+
         /* Main News Area */
         .news-area {
             flex: 1;
@@ -157,6 +173,7 @@
             box-shadow: 0 1vh 2vw rgba(0,0,0,0.3);
             position: relative;
         }
+
         .category-header {
             display: flex;
             justify-content: space-between;
@@ -164,6 +181,7 @@
             margin-bottom: 2vh;
             height: 6vh;
         }
+
         #category-title {
             font-family: 'Oswald', sans-serif;
             font-size: 3vw;
@@ -173,6 +191,7 @@
             letter-spacing: 0.1vw;
             transition: color 0.5s;
         }
+
         .progress-container {
             width: 15vw;
             height: 0.6vh;
@@ -181,12 +200,14 @@
             overflow: hidden;
             margin-bottom: 1vh;
         }
+
         #progress-bar {
             height: 100%;
             width: 0%;
             background: var(--accent);
             transition: width 0.1s linear, background-color 0.5s;
         }
+
         .carousel-viewport {
             flex: 1;
             overflow: hidden;
@@ -195,12 +216,14 @@
             mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
             -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
         }
+
         #news-track {
             display: flex;
             flex-direction: column;
             gap: 2vh;
             transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
+
         .news-card {
             display: flex;
             background: rgba(0,0,0,0.5);
@@ -219,12 +242,14 @@
         .news-card:active {
             transform: scale(0.98);
         }
+
         .news-img {
             width: 16vw;
             height: 100%;
             object-fit: cover;
             border-right: 0.1vh solid rgba(255,255,255,0.1);
         }
+
         .news-content {
             padding: 1.5vh 1.5vw;
             flex: 1;
@@ -232,6 +257,7 @@
             flex-direction: column;
             justify-content: center;
         }
+
         .news-headline {
             font-size: 1.6vw;
             font-weight: 700;
@@ -239,12 +265,14 @@
             margin: 0 0 1vh 0;
             color: #f8fafc;
         }
+
         .news-desc {
             font-size: 1.1vw;
             color: var(--text-muted);
             margin: 0 0 1vh 0;
             line-height: 1.4;
         }
+
         .news-meta {
             font-size: 1.1vw;
             color: #64748b;
@@ -252,12 +280,14 @@
             justify-content: space-between;
             margin-top: auto;
         }
+
         .news-source {
             font-weight: 700;
             color: #cbd5e1;
             text-transform: uppercase;
             letter-spacing: 0.05vw;
         }
+
         #loading-overlay {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -283,6 +313,7 @@
             margin-top: 2vh;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
         /* Modal for Touch Interaction */
         #news-modal {
             position: fixed;
@@ -375,6 +406,7 @@
             <div id="clock">--:--:--</div>
         </div>
     </header>
+
     <main>
         <aside>
             <div class="widget" id="apod-container">
@@ -382,6 +414,7 @@
                 <img id="apod-img" src="" alt="APOD">
                 <div id="apod-title">Fetching imagery...</div>
             </div>
+
             <div class="widget" style="padding: 1vw;">
                 <div id="av-orbit">
                     <script>
@@ -393,11 +426,13 @@
                     <script src="https://astroviewer.net/widgets/widgets/orbit.js"></script>
                 </div>
             </div>
+
             <div class="widget" style="flex: 1; min-height: 25vh; display: flex; flex-direction: column;">
                 <h3>Upcoming Launches</h3>
                 <div id="launch-list">Syncing schedules...</div>
             </div>
         </aside>
+
         <section class="news-area">
             <div class="category-header">
                 <h2 id="category-title">LOADING...</h2>
@@ -411,27 +446,74 @@
             </div>
         </section>
     </main>
+
     <script>
         const categories = [
             { id: 'missions', name: 'Missions', color: '#3b82f6', query: 'mission' },
             { id: 'launches', name: 'Launches', color: '#ef4444', query: 'launch' },
-            { id: 'astronomy', name: 'Astronomy', color: '#8b5cf6', query: 'astronomy' },
+            { id: 'astronomy', name: 'Astronomy', color: '#8b5cf6', feeds: [
+                'https://earthsky.org/space/feed/',
+                'https://earthsky.org/sun/feed/',
+                'https://skyandtelescope.org/astronomy-news/feed/',
+                'https://skyandtelescope.org/astronomy-news/spacecraft-and-space-missions/feed/',
+                'https://skyandtelescope.org/astronomy-news/exoplanets/feed/',
+                'https://skyandtelescope.org/astronomy-news/galaxies/feed/',
+                'https://skyandtelescope.org/astronomy-news/cosmology/feed/',
+                'https://skyandtelescope.org/astronomy-news/black-holes/feed/',
+                'https://skyandtelescope.org/astronomy-news/stellar-science/feed/'
+            ] },
             { id: 'science', name: 'Space Science', color: '#10b981', query: 'science' },
             { id: 'tech', name: 'Tech & Satellites', color: '#f59e0b', query: 'satellite' }
         ];
+
         let newsData = {};
         let currentCategoryIndex = 0;
         let currentSlideIndex = 0;
         let isHovered = false;
         let isModalOpen = false;
         let progress = 0;
+
         async function fetchNews() {
-            // Fetch 15 articles per category to ensure enough items for scrolling, strictly ordered by newest first
             const promises = categories.map(async (cat) => {
                 try {
-                    const res = await fetch(`https://api.spaceflightnewsapi.net/v4/articles/?limit=15&search=${cat.query}&ordering=-published_at`);
-                    const data = await res.json();
-                    newsData[cat.id] = data.results || [];
+                    if (cat.feeds) {
+                        let allArticles = [];
+                        for (const feedUrl of cat.feeds) {
+                            try {
+                                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`);
+                                const data = await res.json();
+                                if (data.status === 'ok' && data.items) {
+                                    const parsed = data.items.map(item => {
+                                        // Extract image from description/content if not in thumbnail
+                                        let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
+                                        if (!imgUrl && item.content) {
+                                            const match = item.content.match(/<img[^>]+src="([^">]+)"/);
+                                            if (match) imgUrl = match[1];
+                                        }
+                                        return {
+                                            title: item.title,
+                                            summary: item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...' : '',
+                                            url: item.link,
+                                            image_url: imgUrl,
+                                            news_site: feedUrl.includes('earthsky') ? 'EarthSky' : 'Sky & Telescope',
+                                            published_at: item.pubDate
+                                        };
+                                    });
+                                    allArticles = allArticles.concat(parsed);
+                                }
+                            } catch (feedErr) {
+                                console.error(`Failed to fetch feed ${feedUrl}:`, feedErr);
+                            }
+                        }
+                        // Sort by published_at descending
+                        allArticles.sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+                        newsData[cat.id] = allArticles.slice(0, 30); // Keep top 30 to show variety
+                    } else {
+                        // Standard spaceflightnewsapi for other categories
+                        const res = await fetch(`https://api.spaceflightnewsapi.net/v4/articles/?limit=15&search=${cat.query}&ordering=-published_at`);
+                        const data = await res.json();
+                        newsData[cat.id] = data.results || [];
+                    }
                 } catch (e) {
                     console.error(`Failed to fetch ${cat.name}:`, e);
                     newsData[cat.id] = [];
@@ -439,6 +521,7 @@
             });
             await Promise.all(promises);
         }
+
         async function fetchWidgets() {
             // NASA Image of the Day
             try {
@@ -466,6 +549,7 @@
                 document.getElementById('apod-img').style.display = 'block';
                 document.getElementById('apod-title').innerText = "Earth from Space (Fallback)";
             }
+
             // Launch Library 2
             try {
                 // Try production API first, fallback to dev if rate limited.
@@ -479,11 +563,13 @@
                 if (!data.results || data.results.length === 0) {
                     throw new Error("No launch data available");
                 }
+
                 let itemsHtml = '';
                 // Filter out TBD (placeholder) launches to only show real-life exact timings
                 const realLaunches = data.results.filter(l => l.status && l.status.abbrev !== 'TBD').slice(0, 10);
                 
                 if (realLaunches.length === 0) throw new Error("No confirmed launches");
+
                 realLaunches.forEach(l => {
                     const d = new Date(l.net);
                     const dateStr = d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -500,6 +586,7 @@
                 document.getElementById('launch-list').innerHTML = `<div style="padding: 1vw; font-size: 1.1vw; color: #94a3b8;">Schedules temporarily unavailable.</div>`;
             }
         }
+
         function renderCategory() {
             const cat = categories[currentCategoryIndex];
             document.getElementById('category-title').innerText = cat.name;
@@ -543,6 +630,7 @@
             void track.offsetWidth;
             track.style.transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1)';
         }
+
         function openModal(article) {
             isModalOpen = true;
             document.getElementById('modal-img').src = article.image_url;
@@ -557,12 +645,14 @@
             modal.style.display = 'flex';
             setTimeout(() => modal.style.opacity = '1', 10);
         }
+
         function closeModal() {
             isModalOpen = false;
             const modal = document.getElementById('news-modal');
             modal.style.opacity = '0';
             setTimeout(() => modal.style.display = 'none', 300);
         }
+
         function nextSlide() {
             if (isHovered || isModalOpen) return;
             const articles = newsData[categories[currentCategoryIndex].id] || [];
@@ -576,16 +666,19 @@
                 track.style.transform = `translateY(calc(-${currentSlideIndex} * 26vh))`;
             }
         }
+
         function nextCategory() {
             if (isHovered || isModalOpen) return;
             currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
             renderCategory();
         }
+
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             document.getElementById('date').innerText = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         }
+
         async function init() {
             updateClock();
             setInterval(updateClock, 1000);
@@ -604,6 +697,7 @@
             const overlay = document.getElementById('loading-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => overlay.remove(), 1000);
+
             renderCategory();
             
             // Setup timers
@@ -640,6 +734,7 @@
                 }
             });
         }
+
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
