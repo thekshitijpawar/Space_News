@@ -529,18 +529,13 @@
                 if (!res.ok) throw new Error('NASA IOTD failed');
                 const data = await res.json();
                 
-                if (data.status === 'ok' && data.items.length > 0) {
-                    const item = data.items[0];
-                    const imgUrl = (item.enclosure && item.enclosure.link) ? item.enclosure.link : item.thumbnail;
-                    if (imgUrl) {
-                        document.getElementById('apod-img').src = imgUrl;
-                        document.getElementById('apod-img').style.display = 'block';
-                        document.getElementById('apod-title').innerText = item.title;
-                    } else {
-                        throw new Error('No valid image URL found in feed');
-                    }
+                const imgUrl = data.hdurl || data.url;
+                if (imgUrl) {
+                    document.getElementById('apod-img').src = imgUrl;
+                    document.getElementById('apod-img').style.display = 'block';
+                    document.getElementById('apod-title').innerText = data.title || 'Astronomy Picture of the Day';
                 } else {
-                    throw new Error('Invalid feed status');
+                    throw new Error('No valid image URL found in APOD response');
                 }
             } catch(e) { 
                 console.error('IOTD Error:', e);
