@@ -131,63 +131,93 @@
 
         /* Left Sidebar Widgets */
         aside {
-            width: 28vw;
+            width: 22vw;
             display: flex;
             flex-direction: column;
-            gap: 2vh;
+            gap: 1vh;
+            overflow: hidden;
         }
 
         .widget {
             background: var(--panel-bg);
             border: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-radius: 1vw;
-            padding: 2vh 2vw;
+            padding: 1.2vh 1.5vw;
             backdrop-filter: blur(1vw);
             box-shadow: 0 1vh 2vw rgba(0, 0, 0, 0.3);
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
         }
 
         .widget h3 {
-            margin: 0 0 1.5vh 0;
+            margin: 0 0 0.8vh 0;
             font-family: 'Oswald', sans-serif;
-            font-size: 1.6vw;
+            font-size: 1.3vw;
             color: var(--accent);
             text-transform: uppercase;
             letter-spacing: 0.1vw;
             border-bottom: 0.2vh solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 0.5vh;
+            padding-bottom: 0.4vh;
+            flex-shrink: 0;
         }
 
+        /* APOD widget — takes ~38% of available sidebar height */
         #apod-container {
-            flex: 1;
-            justify-content: center;
+            flex: 0 0 auto;
         }
 
         #apod-img {
             width: 100%;
-            height: 25vh;
+            height: 22vh;
             object-fit: cover;
             border-radius: 0.5vw;
-            margin-bottom: 1vh;
-            border: 0.1vh solid rgba(255, 255, 255, 0.2);
-            display: none;
+            margin-bottom: 0.7vh;
+            border: 0.15vh solid rgba(59,130,246,0.4);
+            box-shadow: 0 0 1.5vw rgba(59,130,246,0.25);
+            display: block;   /* always visible — no click needed */
+            cursor: default;
         }
 
         #apod-title {
-            font-size: 1.2vw;
+            font-size: 1.05vw;
             font-weight: 600;
             line-height: 1.4;
             color: #e2e8f0;
         }
 
+        /* ISS orbit widget — fixed compact height */
+        #iss-widget {
+            flex: 0 0 auto;
+            overflow: hidden;
+        }
+
+        #av-orbit {
+            width: 100%;
+            overflow: hidden;
+        }
+
         #av-orbit iframe {
             width: 100% !important;
-            max-height: 25vh !important;
+            height: 20vh !important;
+            min-height: unset !important;
+            max-height: 20vh !important;
+            border: none !important;
+            display: block;
+            border-radius: 0.5vw;
+        }
+
+        /* Upcoming Launches — fills remaining space */
+        #launch-widget {
+            flex: 1 1 0;
+            min-height: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .launch-item {
-            margin-bottom: 1.5vh;
+            margin-bottom: 1.2vh;
             display: flex;
             flex-direction: column;
             transition: transform 0.2s;
@@ -203,7 +233,7 @@
         }
 
         .launch-name {
-            font-size: 1.2vw;
+            font-size: 1.05vw;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
@@ -212,7 +242,7 @@
         }
 
         .launch-time {
-            font-size: 1.1vw;
+            font-size: 0.95vw;
             color: #f87171;
             font-weight: 600;
         }
@@ -228,7 +258,7 @@
         .launch-track {
             display: flex;
             flex-direction: column;
-            animation: scrollUp 20s linear infinite;
+            animation: scrollUp 25s linear infinite;
         }
 
         @keyframes scrollUp {
@@ -239,6 +269,64 @@
             100% {
                 transform: translateY(-50%);
             }
+        }
+
+        /* ── Interactive ON / OFF Buttons (header top-right) ── */
+        .interactive-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5vw;
+            margin-left: 2vw;
+        }
+
+        .interactive-controls .ctrl-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1vw;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08vw;
+            margin-right: 0.3vw;
+        }
+
+        .ctrl-btn {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1vw;
+            letter-spacing: 0.1vw;
+            text-transform: uppercase;
+            padding: 0.6vh 1.5vw;
+            border-radius: 0.4vw;
+            border: 0.15vh solid transparent;
+            cursor: pointer;
+            transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, color 0.25s;
+            user-select: none;
+        }
+
+        #btn-on {
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.35);
+            color: #86efac;
+        }
+
+        #btn-on:hover,
+        #btn-on.active {
+            background: rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+            color: #fff;
+            box-shadow: 0 0 1vw rgba(34, 197, 94, 0.5);
+        }
+
+        #btn-off {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+        }
+
+        #btn-off:hover,
+        #btn-off.active {
+            background: rgba(239, 68, 68, 0.25);
+            border-color: #ef4444;
+            color: #fff;
+            box-shadow: 0 0 1vw rgba(239, 68, 68, 0.5);
         }
 
         /* Main News Area */
@@ -294,9 +382,7 @@
             flex: 1;
             overflow: hidden;
             position: relative;
-            /* Fade effect at the bottom */
-            mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+            /* No fade — full card always readable */
         }
 
         #news-track {
@@ -311,49 +397,47 @@
             background: rgba(0, 0, 0, 0.5);
             border-radius: 0.8vw;
             border-top: 0.4vh solid var(--accent);
-            height: 24vh;
+            height: 38vh;
             flex-shrink: 0;
             overflow: hidden;
             box-shadow: 0 0.5vh 1vw rgba(0, 0, 0, 0.2);
             border-left: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-right: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-bottom: 0.1vh solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.1s;
-            cursor: pointer;
-        }
-
-        .news-card:active {
-            transform: scale(0.98);
         }
 
         .news-img {
-            width: 16vw;
+            width: 18vw;
             height: 100%;
             object-fit: cover;
             border-right: 0.1vh solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
         }
 
         .news-content {
-            padding: 1.5vh 1.5vw;
+            padding: 2vh 2vw;
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            overflow: hidden;
         }
 
         .news-headline {
-            font-size: 1.6vw;
+            font-size: 1.8vw;
             font-weight: 700;
-            line-height: 1.3;
-            margin: 0 0 1vh 0;
+            line-height: 1.35;
+            margin: 0 0 1.2vh 0;
             color: #f8fafc;
         }
 
         .news-desc {
-            font-size: 1.1vw;
+            font-size: 1.25vw;
             color: var(--text-muted);
-            margin: 0 0 1vh 0;
-            line-height: 1.4;
+            margin: 0 0 1.2vh 0;
+            line-height: 1.6;
+            flex: 1;
+            overflow: hidden;
         }
 
         .news-meta {
@@ -362,6 +446,7 @@
             display: flex;
             justify-content: space-between;
             margin-top: auto;
+            flex-shrink: 0;
         }
 
         .news-source {
@@ -369,6 +454,63 @@
             color: #cbd5e1;
             text-transform: uppercase;
             letter-spacing: 0.05vw;
+        }
+
+        /* ── Interactive Navigation Controls ── */
+        #interactive-controls {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5vh;
+            gap: 1vw;
+        }
+
+        #interactive-controls.visible {
+            display: flex;
+        }
+
+        .nav-group {
+            display: flex;
+            align-items: center;
+            gap: 0.6vw;
+        }
+
+        .nav-label {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1vw;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08vw;
+        }
+
+        .nav-btn {
+            background: rgba(59,130,246,0.12);
+            border: 0.15vh solid rgba(59,130,246,0.45);
+            color: #93c5fd;
+            border-radius: 0.5vw;
+            padding: 0.55vh 1.1vw;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1vw;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            user-select: none;
+            letter-spacing: 0.05vw;
+        }
+
+        .nav-btn:hover {
+            background: rgba(59,130,246,0.28);
+            color: #fff;
+            box-shadow: 0 0 0.8vw rgba(59,130,246,0.35);
+        }
+
+        .nav-btn:active {
+            background: rgba(59,130,246,0.45);
+        }
+
+        .nav-divider {
+            width: 0.12vw;
+            height: 2.5vh;
+            background: rgba(255,255,255,0.12);
         }
 
         #loading-overlay {
@@ -532,21 +674,34 @@
 
     <header>
         <div class="logo">Space News Live</div>
-        <div class="clock-area">
-            <div id="date">Loading Date...</div>
-            <div id="clock">--:--:--</div>
+        <div style="display:flex; align-items:center; gap:2vw;">
+            <!-- Interactive ON / OFF -->
+            <div class="interactive-controls">
+                <span class="ctrl-label">Interactive</span>
+                <button id="btn-on"  class="ctrl-btn" onclick="setInteractive(true)">ON</button>
+                <button id="btn-off" class="ctrl-btn active" onclick="setInteractive(false)">OFF</button>
+            </div>
+            <div class="clock-area">
+                <div id="date">Loading Date...</div>
+                <div id="clock">--:--:--</div>
+            </div>
         </div>
     </header>
 
+
+
     <main>
         <aside>
+            <!-- NASA Image of the Day -->
             <div class="widget" id="apod-container">
                 <h3>NASA Image of the Day</h3>
-                <img id="apod-img" src="" alt="APOD">
+                <img id="apod-img" src="" alt="NASA Image of the Day">
                 <div id="apod-title">Fetching imagery...</div>
             </div>
 
-            <div class="widget" style="padding: 1vw;">
+            <!-- ISS Current Position -->
+            <div class="widget" id="iss-widget">
+                <h3>Current Position of ISS</h3>
                 <div id="av-orbit">
                     <script>
                         var avOrbitProperties = {
@@ -558,7 +713,8 @@
                 </div>
             </div>
 
-            <div class="widget" style="flex: 1; min-height: 25vh; display: flex; flex-direction: column;">
+            <!-- Upcoming Launches -->
+            <div class="widget" id="launch-widget">
                 <h3>Upcoming Launches</h3>
                 <div id="launch-list">Syncing schedules...</div>
             </div>
@@ -569,6 +725,21 @@
                 <h2 id="category-title">LOADING...</h2>
                 <div class="progress-container">
                     <div id="progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Interactive navigation bar (only visible in Interactive Mode) -->
+            <div id="interactive-controls">
+                <div class="nav-group">
+                    <span class="nav-label">Section</span>
+                    <button class="nav-btn" onclick="manualPrevCategory()">&#8592; Prev</button>
+                    <button class="nav-btn" onclick="manualNextCategory()">Next &#8594;</button>
+                </div>
+                <div class="nav-divider"></div>
+                <div class="nav-group">
+                    <span class="nav-label">Article</span>
+                    <button class="nav-btn" onclick="manualPrevSlide()">&#8593; Up</button>
+                    <button class="nav-btn" onclick="manualNextSlide()">Down &#8595;</button>
                 </div>
             </div>
 
@@ -606,6 +777,52 @@
         let isModalOpen = false;
         let progress = 0;
 
+        // ── Robust image extractor for RSS items ──────────────────────────────
+        // Sky & Telescope stores images in several non-standard ways:
+        //  • protocol-relative URLs  //cdn.mos.cms.futurecdn.net/...
+        //  • src inside single-quoted attributes
+        //  • only inside <description>, not <content>
+        //  • as the first URL inside a srcset attribute
+        const SPACE_FALLBACKS = [
+            'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1080&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?q=80&w=1080&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=1080&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1614732414444-096e5f1122d5?q=80&w=1080&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1608178398319-48f814d0750c?q=80&w=1080&auto=format&fit=crop'
+        ];
+        let fallbackIndex = 0;
+        function nextFallback() {
+            return SPACE_FALLBACKS[fallbackIndex++ % SPACE_FALLBACKS.length];
+        }
+
+        function extractImage(item) {
+            // 1. rss2json thumbnail field (media:thumbnail / image)
+            let url = (item.thumbnail && !item.thumbnail.includes('1x1')) ? item.thumbnail : '';
+
+            // 2. enclosure link
+            if (!url && item.enclosure && item.enclosure.link &&
+                /\.(jpe?g|png|webp|gif)/i.test(item.enclosure.link)) {
+                url = item.enclosure.link;
+            }
+
+            // 3. scan content then description for <img src=...> (double or single quotes)
+            const imgRegex = /<img[^>]+src=["']([^"'> ]+)["']/i;
+            const srcsetRegex = /<img[^>]+srcset=["']([^"'> ]+)/i;
+            for (const field of [item.content, item.description]) {
+                if (url || !field) continue;
+                const m = field.match(imgRegex) || field.match(srcsetRegex);
+                if (m) url = m[1].split(/[\s,]/)[0]; // srcset: take first URL
+            }
+
+            // 4. fix protocol-relative URLs
+            if (url && url.startsWith('//')) url = 'https:' + url;
+
+            // 5. discard tiny tracking pixels (< 10 chars after domain or 1x1 gifs)
+            if (url && (url.includes('1x1') || url.length < 20)) url = '';
+
+            return url;
+        }
+
         async function fetchNews() {
             const promises = categories.map(async (cat) => {
                 try {
@@ -617,15 +834,10 @@
                                 const data = await res.json();
                                 if (data.status === 'ok' && data.items) {
                                     const parsed = data.items.map(item => {
-                                        // Extract image from description/content if not in thumbnail
-                                        let imgUrl = item.thumbnail || (item.enclosure && item.enclosure.link) || '';
-                                        if (!imgUrl && item.content) {
-                                            const match = item.content.match(/<img[^>]+src="([^">]+)"/);
-                                            if (match) imgUrl = match[1];
-                                        }
+                                        const imgUrl = extractImage(item);
                                         return {
                                             title: item.title,
-                                            summary: item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...' : '',
+                                            summary: item.description ? item.description.replace(/<[^>]*>?/gm, '').substring(0, 400) + '...' : '',
                                             url: item.link,
                                             image_url: imgUrl,
                                             news_site: feedUrl.includes('earthsky') ? 'EarthSky' : 'Sky & Telescope',
@@ -742,9 +954,10 @@
                     const d = new Date(article.published_at);
                     const dateStr = d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
                     // Provide a default image fallback inline
+                    const cardImg = article.image_url || nextFallback();
                     html += `
                         <div class="news-card" style="border-top-color: ${cat.color}" data-idx="${idx}">
-                            <img class="news-img" src="${article.image_url}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100\\' height=\\'100\\'><rect width=\\'100%\\' height=\\'100%\\' fill=\\'%231e293b\\'/></svg>'">
+                            <img class="news-img" src="${cardImg}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1080&auto=format&fit=crop'" alt="">
                             <div class="news-content">
                                 <div class="news-headline">${article.title}</div>
                                 <div class="news-desc">${article.summary}</div>
@@ -786,23 +999,53 @@
             setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        function nextSlide() {
-            if (isHovered || isModalOpen) return;
-            const articles = newsData[categories[currentCategoryIndex].id] || [];
-            // Visible area fits exactly 3 cards. We only slide up if there are hidden cards.
-            const maxSlide = Math.max(0, articles.length - 3);
+        // card height 38vh + gap 2vh = 40vh per step
+        const CARD_STEP = 40;
 
+        function nextSlide() {
+            if (isPaused || isModalOpen) return;
+            const articles = newsData[categories[currentCategoryIndex].id] || [];
+            // 2 cards visible at once (2 × 38vh + 2vh gap ≈ 78vh < 80vh available)
+            const maxSlide = Math.max(0, articles.length - 2);
             if (currentSlideIndex < maxSlide) {
                 currentSlideIndex++;
-                const track = document.getElementById('news-track');
-                // Card height: 24vh, Gap: 2vh -> Total jump = 26vh
-                track.style.transform = `translateY(calc(-${currentSlideIndex} * 26vh))`;
+                document.getElementById('news-track').style.transform =
+                    `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
             }
         }
 
         function nextCategory() {
-            if (isHovered || isModalOpen) return;
+            if (isPaused || isModalOpen) return;
             currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+            renderCategory();
+        }
+
+        /* Manual navigation (Interactive Mode) */
+        function manualNextSlide() {
+            const articles = newsData[categories[currentCategoryIndex].id] || [];
+            const maxSlide = Math.max(0, articles.length - 2);
+            if (currentSlideIndex < maxSlide) {
+                currentSlideIndex++;
+                document.getElementById('news-track').style.transform =
+                    `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
+            }
+        }
+
+        function manualPrevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                document.getElementById('news-track').style.transform =
+                    `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
+            }
+        }
+
+        function manualNextCategory() {
+            currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+            renderCategory();
+        }
+
+        function manualPrevCategory() {
+            currentCategoryIndex = (currentCategoryIndex - 1 + categories.length) % categories.length;
             renderCategory();
         }
 
@@ -833,14 +1076,14 @@
 
             renderCategory();
 
-            // Setup timers
-            setInterval(nextSlide, 5000); // Auto scroll down every 5 seconds
-            setInterval(nextCategory, 30000); // Switch category every 30 seconds
+            // Setup timers — increased for more reading time
+            setInterval(nextSlide, 10000);   // scroll news every 10 seconds
+            setInterval(nextCategory, 60000); // switch category every 60 seconds
 
-            // Progress bar logic (30 seconds total)
+            // Progress bar logic (60 seconds total)
             setInterval(() => {
-                if (!isHovered && !isModalOpen) {
-                    progress += (100 / 300); // 30s = 300 ticks of 100ms
+                if (!isHovered && !isModalOpen && !isPaused) {
+                    progress += (100 / 600); // 60s = 600 ticks of 100ms
                     if (progress > 100) progress = 0;
                     document.getElementById('progress-bar').style.width = `${progress}%`;
                 }
@@ -866,6 +1109,31 @@
                     closeModal();
                 }
             });
+        }
+
+        /* ── Interactive ON / OFF ── */
+        let isPaused = false;
+
+        function setInteractive(on) {
+            isPaused = on;
+            const btnOn  = document.getElementById('btn-on');
+            const btnOff = document.getElementById('btn-off');
+            const controls = document.getElementById('interactive-controls');
+            const launchTrack = document.querySelector('.launch-track');
+
+            if (on) {
+                // Interactive ON — pause auto-cycling, show nav arrows
+                btnOn.classList.add('active');
+                btnOff.classList.remove('active');
+                if (controls) controls.classList.add('visible');
+                if (launchTrack) launchTrack.style.animationPlayState = 'paused';
+            } else {
+                // Interactive OFF — resume auto-cycling, hide nav arrows
+                btnOff.classList.add('active');
+                btnOn.classList.remove('active');
+                if (controls) controls.classList.remove('visible');
+                if (launchTrack) launchTrack.style.animationPlayState = 'running';
+            }
         }
 
         document.addEventListener('DOMContentLoaded', init);
