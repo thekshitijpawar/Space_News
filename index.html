@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
         }
-
         body {
             margin: 0;
             padding: 0;
@@ -32,21 +30,17 @@
             font-family: 'Inter', system-ui, sans-serif;
             box-sizing: border-box;
         }
-
         @keyframes gradientBG {
             0% {
                 background-position: 0% 50%;
             }
-
             50% {
                 background-position: 100% 50%;
             }
-
             100% {
                 background-position: 0% 50%;
             }
         }
-
         /* Animated Starfield */
         #starfield {
             position: absolute;
@@ -66,24 +60,20 @@
             background-size: 100vw 100vh;
             animation: twinkling 4s infinite ease-in-out;
         }
-
         @keyframes twinkling {
             0% {
                 opacity: 0.6;
                 transform: scale(1);
             }
-
             50% {
                 opacity: 0.2;
                 transform: scale(1.02);
             }
-
             100% {
                 opacity: 0.6;
                 transform: scale(1);
             }
         }
-
         header {
             height: 10vh;
             display: flex;
@@ -93,34 +83,30 @@
             background: linear-gradient(to bottom, rgba(2, 6, 23, 0.9), transparent);
             border-bottom: 0.2vh solid rgba(59, 130, 246, 0.3);
         }
-
         .logo {
             font-family: 'Oswald', sans-serif;
             font-size: 3vw;
             font-weight: 800;
             color: var(--accent);
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.2vw;
             text-shadow: 0 0 1vw rgba(59, 130, 246, 0.5);
         }
-
         .clock-area {
             text-align: right;
         }
-
         #clock {
             font-size: 2.5vw;
             font-weight: 700;
             line-height: 1;
         }
-
         #date {
             font-size: 1.2vw;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1vw;
         }
-
         main {
             display: flex;
             height: 90vh;
@@ -128,7 +114,6 @@
             gap: 2vw;
             box-sizing: border-box;
         }
-
         /* Left Sidebar Widgets */
         aside {
             width: 22vw;
@@ -137,7 +122,6 @@
             gap: 1vh;
             overflow: hidden;
         }
-
         .widget {
             background: var(--panel-bg);
             border: 0.1vh solid rgba(255, 255, 255, 0.05);
@@ -149,7 +133,6 @@
             flex-direction: column;
             flex-shrink: 0;
         }
-
         .widget h3 {
             margin: 0 0 0.8vh 0;
             font-family: 'Oswald', sans-serif;
@@ -161,12 +144,10 @@
             padding-bottom: 0.4vh;
             flex-shrink: 0;
         }
-
         /* APOD widget — takes ~38% of available sidebar height */
         #apod-container {
             flex: 0 0 auto;
         }
-
         #apod-img {
             width: 100%;
             height: 22vh;
@@ -178,25 +159,21 @@
             display: block;   /* always visible — no click needed */
             cursor: default;
         }
-
         #apod-title {
             font-size: 1.05vw;
             font-weight: 600;
             line-height: 1.4;
             color: #e2e8f0;
         }
-
         /* ISS orbit widget — fixed compact height */
         #iss-widget {
             flex: 0 0 auto;
             overflow: hidden;
         }
-
         #av-orbit {
             width: 100%;
             overflow: hidden;
         }
-
         #av-orbit iframe {
             width: 100% !important;
             height: 20vh !important;
@@ -206,7 +183,6 @@
             display: block;
             border-radius: 0.5vw;
         }
-
         /* Upcoming Launches — fills remaining space */
         #launch-widget {
             flex: 1 1 0;
@@ -215,7 +191,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .launch-item {
             margin-bottom: 1.2vh;
             display: flex;
@@ -223,15 +198,12 @@
             transition: transform 0.2s;
             cursor: pointer;
         }
-
         .launch-item:hover {
             transform: translateX(0.5vw);
         }
-
         .launch-item:active {
             transform: scale(0.98);
         }
-
         .launch-name {
             font-size: 1.05vw;
             font-weight: 600;
@@ -240,13 +212,11 @@
             text-overflow: ellipsis;
             color: #e2e8f0;
         }
-
         .launch-time {
             font-size: 0.95vw;
             color: #f87171;
             font-weight: 600;
         }
-
         #launch-list {
             flex: 1;
             overflow: hidden;
@@ -254,23 +224,19 @@
             mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
             -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
         }
-
         .launch-track {
             display: flex;
             flex-direction: column;
             animation: scrollUp 25s linear infinite;
         }
-
         @keyframes scrollUp {
             0% {
                 transform: translateY(0);
             }
-
             100% {
                 transform: translateY(-50%);
             }
         }
-
         /* ── Interactive ON / OFF Buttons (header top-right) ── */
         .interactive-controls {
             display: flex;
@@ -278,7 +244,6 @@
             gap: 0.5vw;
             margin-left: 2vw;
         }
-
         .interactive-controls .ctrl-label {
             font-family: 'Oswald', sans-serif;
             font-size: 1vw;
@@ -287,7 +252,6 @@
             letter-spacing: 0.08vw;
             margin-right: 0.3vw;
         }
-
         .ctrl-btn {
             font-family: 'Oswald', sans-serif;
             font-size: 1.1vw;
@@ -300,13 +264,11 @@
             transition: background 0.25s, border-color 0.25s, box-shadow 0.25s, color 0.25s;
             user-select: none;
         }
-
         #btn-on {
             background: rgba(34, 197, 94, 0.1);
             border-color: rgba(34, 197, 94, 0.35);
             color: #86efac;
         }
-
         #btn-on:hover,
         #btn-on.active {
             background: rgba(34, 197, 94, 0.25);
@@ -314,13 +276,11 @@
             color: #fff;
             box-shadow: 0 0 1vw rgba(34, 197, 94, 0.5);
         }
-
         #btn-off {
             background: rgba(239, 68, 68, 0.1);
             border-color: rgba(239, 68, 68, 0.35);
             color: #fca5a5;
         }
-
         #btn-off:hover,
         #btn-off.active {
             background: rgba(239, 68, 68, 0.25);
@@ -328,7 +288,6 @@
             color: #fff;
             box-shadow: 0 0 1vw rgba(239, 68, 68, 0.5);
         }
-
         /* Main News Area */
         .news-area {
             flex: 1;
@@ -343,7 +302,6 @@
             box-shadow: 0 1vh 2vw rgba(0, 0, 0, 0.3);
             position: relative;
         }
-
         .category-header {
             display: flex;
             justify-content: space-between;
@@ -351,7 +309,6 @@
             margin-bottom: 2vh;
             height: 6vh;
         }
-
         #category-title {
             font-family: 'Oswald', sans-serif;
             font-size: 3vw;
@@ -361,7 +318,6 @@
             letter-spacing: 0.1vw;
             transition: color 0.5s;
         }
-
         .progress-container {
             width: 15vw;
             height: 0.6vh;
@@ -370,28 +326,24 @@
             overflow: hidden;
             margin-bottom: 1vh;
         }
-
         #progress-bar {
             height: 100%;
             width: 0%;
             background: var(--accent);
             transition: width 0.1s linear, background-color 0.5s;
         }
-
         .carousel-viewport {
             flex: 1;
             overflow: hidden;
             position: relative;
             /* No fade — full card always readable */
         }
-
         #news-track {
             display: flex;
             flex-direction: column;
             gap: 2vh;
             transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
         .news-card {
             display: flex;
             background: rgba(0, 0, 0, 0.5);
@@ -405,7 +357,6 @@
             border-right: 0.1vh solid rgba(255, 255, 255, 0.05);
             border-bottom: 0.1vh solid rgba(255, 255, 255, 0.05);
         }
-
         .news-img {
             width: 18vw;
             height: 100%;
@@ -413,7 +364,6 @@
             border-right: 0.1vh solid rgba(255, 255, 255, 0.1);
             flex-shrink: 0;
         }
-
         .news-content {
             padding: 2vh 2vw;
             flex: 1;
@@ -422,7 +372,6 @@
             justify-content: flex-start;
             overflow: hidden;
         }
-
         .news-headline {
             font-size: 1.8vw;
             font-weight: 700;
@@ -430,7 +379,6 @@
             margin: 0 0 1.2vh 0;
             color: #f8fafc;
         }
-
         .news-desc {
             font-size: 1.25vw;
             color: var(--text-muted);
@@ -439,7 +387,6 @@
             flex: 1;
             overflow: hidden;
         }
-
         .news-meta {
             font-size: 1.1vw;
             color: #64748b;
@@ -448,14 +395,12 @@
             margin-top: auto;
             flex-shrink: 0;
         }
-
         .news-source {
             font-weight: 700;
             color: #cbd5e1;
             text-transform: uppercase;
             letter-spacing: 0.05vw;
         }
-
         /* ── Interactive Navigation Controls ── */
         #interactive-controls {
             display: none;
@@ -464,17 +409,14 @@
             margin-bottom: 1.5vh;
             gap: 1vw;
         }
-
         #interactive-controls.visible {
             display: flex;
         }
-
         .nav-group {
             display: flex;
             align-items: center;
             gap: 0.6vw;
         }
-
         .nav-label {
             font-family: 'Oswald', sans-serif;
             font-size: 1vw;
@@ -482,7 +424,6 @@
             text-transform: uppercase;
             letter-spacing: 0.08vw;
         }
-
         .nav-btn {
             background: rgba(59,130,246,0.12);
             border: 0.15vh solid rgba(59,130,246,0.45);
@@ -496,23 +437,19 @@
             user-select: none;
             letter-spacing: 0.05vw;
         }
-
         .nav-btn:hover {
             background: rgba(59,130,246,0.28);
             color: #fff;
             box-shadow: 0 0 0.8vw rgba(59,130,246,0.35);
         }
-
         .nav-btn:active {
             background: rgba(59,130,246,0.45);
         }
-
         .nav-divider {
             width: 0.12vw;
             height: 2.5vh;
             background: rgba(255,255,255,0.12);
         }
-
         #loading-overlay {
             position: absolute;
             top: 0;
@@ -530,7 +467,6 @@
             color: var(--accent);
             transition: opacity 1s;
         }
-
         .spinner {
             width: 4vw;
             height: 4vw;
@@ -540,17 +476,14 @@
             animation: spin 1s linear infinite;
             margin-top: 2vh;
         }
-
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
         }
-
         /* Modal for Touch Interaction */
         #news-modal {
             position: fixed;
@@ -567,7 +500,6 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-
         .modal-content {
             background: var(--bg-dark);
             border: 0.2vh solid var(--accent);
@@ -581,7 +513,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .close-btn {
             position: absolute;
             top: 2vh;
@@ -592,11 +523,9 @@
             line-height: 1;
             transition: color 0.2s;
         }
-
         .close-btn:hover {
             color: #f8fafc;
         }
-
         #modal-img {
             width: 100%;
             height: 35vh;
@@ -605,21 +534,18 @@
             margin-bottom: 3vh;
             border: 0.1vh solid rgba(255, 255, 255, 0.1);
         }
-
         #modal-title {
             font-size: 2.5vw;
             font-family: 'Oswald', sans-serif;
             margin: 0 0 2vh 0;
             color: #f8fafc;
         }
-
         #modal-desc {
             font-size: 1.6vw;
             color: var(--text-muted);
             line-height: 1.6;
             margin: 0 0 3vh 0;
         }
-
         .modal-meta {
             display: flex;
             justify-content: space-between;
@@ -627,13 +553,11 @@
             color: #64748b;
             margin-bottom: 3vh;
         }
-
         #modal-source {
             font-weight: bold;
             color: var(--accent);
             text-transform: uppercase;
         }
-
         #modal-link {
             display: inline-block;
             align-self: flex-start;
@@ -649,14 +573,12 @@
         }
     </style>
 </head>
-
 <body>
     <div id="loading-overlay">
         <div>INITIALIZING SPACE SYSTEMS</div>
         <div class="spinner"></div>
     </div>
     <div id="starfield"></div>
-
     <!-- News Expansion Modal -->
     <div id="news-modal">
         <div class="modal-content">
@@ -671,7 +593,6 @@
             <a id="modal-link" href="#" target="_blank">Read Full Article</a>
         </div>
     </div>
-
     <header>
         <div class="logo">Space News Live</div>
         <div style="display:flex; align-items:center; gap:2vw;">
@@ -687,9 +608,6 @@
             </div>
         </div>
     </header>
-
-
-
     <main>
         <aside>
             <!-- NASA Image of the Day -->
@@ -698,7 +616,6 @@
                 <img id="apod-img" src="" alt="NASA Image of the Day">
                 <div id="apod-title">Fetching imagery...</div>
             </div>
-
             <!-- ISS Current Position -->
             <div class="widget" id="iss-widget">
                 <h3>Current Position of ISS</h3>
@@ -712,14 +629,12 @@
                     <script src="https://astroviewer.net/widgets/widgets/orbit.js"></script>
                 </div>
             </div>
-
             <!-- Upcoming Launches -->
             <div class="widget" id="launch-widget">
                 <h3>Upcoming Launches</h3>
                 <div id="launch-list">Syncing schedules...</div>
             </div>
         </aside>
-
         <section class="news-area">
             <div class="category-header">
                 <h2 id="category-title">LOADING...</h2>
@@ -727,7 +642,6 @@
                     <div id="progress-bar"></div>
                 </div>
             </div>
-
             <!-- Interactive navigation bar (only visible in Interactive Mode) -->
             <div id="interactive-controls">
                 <div class="nav-group">
@@ -742,13 +656,11 @@
                     <button class="nav-btn" onclick="manualNextSlide()">Down &#8595;</button>
                 </div>
             </div>
-
             <div class="carousel-viewport">
                 <div id="news-track"></div>
             </div>
         </section>
     </main>
-
     <script>
         const categories = [
             { id: 'missions', name: 'Missions', color: '#3b82f6', query: 'mission' },
@@ -769,14 +681,12 @@
             { id: 'science', name: 'Space Science', color: '#10b981', query: 'science' },
             { id: 'tech', name: 'Tech & Satellites', color: '#f59e0b', query: 'satellite' }
         ];
-
         let newsData = {};
         let currentCategoryIndex = 0;
         let currentSlideIndex = 0;
         let isHovered = false;
         let isModalOpen = false;
         let progress = 0;
-
         // ── Robust image extractor for RSS items ──────────────────────────────
         // Sky & Telescope stores images in several non-standard ways:
         //  • protocol-relative URLs  //cdn.mos.cms.futurecdn.net/...
@@ -794,17 +704,14 @@
         function nextFallback() {
             return SPACE_FALLBACKS[fallbackIndex++ % SPACE_FALLBACKS.length];
         }
-
         function extractImage(item) {
             // 1. rss2json thumbnail field (media:thumbnail / image)
             let url = (item.thumbnail && !item.thumbnail.includes('1x1')) ? item.thumbnail : '';
-
             // 2. enclosure link
             if (!url && item.enclosure && item.enclosure.link &&
                 /\.(jpe?g|png|webp|gif)/i.test(item.enclosure.link)) {
                 url = item.enclosure.link;
             }
-
             // 3. scan content then description for <img src=...> (double or single quotes)
             const imgRegex = /<img[^>]+src=["']([^"'> ]+)["']/i;
             const srcsetRegex = /<img[^>]+srcset=["']([^"'> ]+)/i;
@@ -813,16 +720,12 @@
                 const m = field.match(imgRegex) || field.match(srcsetRegex);
                 if (m) url = m[1].split(/[\s,]/)[0]; // srcset: take first URL
             }
-
             // 4. fix protocol-relative URLs
             if (url && url.startsWith('//')) url = 'https:' + url;
-
             // 5. discard tiny tracking pixels (< 10 chars after domain or 1x1 gifs)
             if (url && (url.includes('1x1') || url.length < 20)) url = '';
-
             return url;
         }
-
         async function fetchNews() {
             const promises = categories.map(async (cat) => {
                 try {
@@ -866,14 +769,12 @@
             });
             await Promise.all(promises);
         }
-
         async function fetchWidgets() {
             // NASA Image of the Day
             try {
                 const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.nasa.gov/feeds/iotd-feed/');
                 if (!res.ok) throw new Error('NASA IOTD failed');
                 const data = await res.json();
-
                 if (data.status === 'ok' && data.items.length > 0) {
                     const item = data.items[0];
                     const imgUrl = (item.enclosure && item.enclosure.link) ? item.enclosure.link : item.thumbnail;
@@ -894,7 +795,6 @@
                 document.getElementById('apod-img').style.display = 'block';
                 document.getElementById('apod-title').innerText = "Earth from Space (Fallback)";
             }
-
             // Launch Library 2
             try {
                 // Try production API first, fallback to dev if rate limited.
@@ -904,17 +804,13 @@
                 }
                 if (!res.ok) throw new Error(`API returned ${res.status}`);
                 const data = await res.json();
-
                 if (!data.results || data.results.length === 0) {
                     throw new Error("No launch data available");
                 }
-
                 let itemsHtml = '';
                 // Filter out TBD (placeholder) launches to only show real-life exact timings
                 const realLaunches = data.results.filter(l => l.status && l.status.abbrev !== 'TBD').slice(0, 10);
-
                 if (realLaunches.length === 0) throw new Error("No confirmed launches");
-
                 realLaunches.forEach(l => {
                     const d = new Date(l.net);
                     const dateStr = d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -931,22 +827,18 @@
                 document.getElementById('launch-list').innerHTML = `<div style="padding: 1vw; font-size: 1.1vw; color: #94a3b8;">Schedules temporarily unavailable.</div>`;
             }
         }
-
         function renderCategory() {
             const cat = categories[currentCategoryIndex];
             document.getElementById('category-title').innerText = cat.name;
             document.getElementById('category-title').style.color = cat.color;
             document.getElementById('progress-bar').style.backgroundColor = cat.color;
-
             const track = document.getElementById('news-track');
             track.style.transition = 'none';
             track.style.transform = 'translateY(0)';
             currentSlideIndex = 0;
             progress = 0;
-
             const articles = newsData[cat.id] || [];
             let html = '';
-
             if (articles.length === 0) {
                 html = `<div style="padding: 2vw; font-size: 1.5vw;">No news found for this category at the moment.</div>`;
             } else {
@@ -970,13 +862,11 @@
                     `;
                 });
             }
-
             track.innerHTML = html;
             // Force reflow before re-enabling transition
             void track.offsetWidth;
             track.style.transition = 'transform 1s cubic-bezier(0.25, 1, 0.5, 1)';
         }
-
         function openModal(article) {
             isModalOpen = true;
             document.getElementById('modal-img').src = article.image_url;
@@ -986,22 +876,18 @@
             const d = new Date(article.published_at);
             document.getElementById('modal-date').innerText = d.toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
             document.getElementById('modal-link').href = article.url;
-
             const modal = document.getElementById('news-modal');
             modal.style.display = 'flex';
             setTimeout(() => modal.style.opacity = '1', 10);
         }
-
         function closeModal() {
             isModalOpen = false;
             const modal = document.getElementById('news-modal');
             modal.style.opacity = '0';
             setTimeout(() => modal.style.display = 'none', 300);
         }
-
         // card height 38vh + gap 2vh = 40vh per step
         const CARD_STEP = 40;
-
         function nextSlide() {
             if (isPaused || isModalOpen) return;
             const articles = newsData[categories[currentCategoryIndex].id] || [];
@@ -1013,13 +899,11 @@
                     `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
             }
         }
-
         function nextCategory() {
             if (isPaused || isModalOpen) return;
             currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
             renderCategory();
         }
-
         /* Manual navigation (Interactive Mode) */
         function manualNextSlide() {
             const articles = newsData[categories[currentCategoryIndex].id] || [];
@@ -1030,7 +914,6 @@
                     `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
             }
         }
-
         function manualPrevSlide() {
             if (currentSlideIndex > 0) {
                 currentSlideIndex--;
@@ -1038,48 +921,38 @@
                     `translateY(calc(-${currentSlideIndex} * ${CARD_STEP}vh))`;
             }
         }
-
         function manualNextCategory() {
             currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
             renderCategory();
         }
-
         function manualPrevCategory() {
             currentCategoryIndex = (currentCategoryIndex - 1 + categories.length) % categories.length;
             renderCategory();
         }
-
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
             document.getElementById('date').innerText = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         }
-
         async function init() {
             updateClock();
             setInterval(updateClock, 1000);
-
             // Initial fetches
             fetchWidgets();
             setInterval(fetchWidgets, 60000); // refresh widgets every 60s
-
             await fetchNews();
             // Refresh news quietly in the background every 1 hour
             setInterval(fetchNews, 60 * 60 * 1000);
             // Force a full page reload every 24 hours to prevent browser memory leaks on continuous TV displays
             setTimeout(() => window.location.reload(), 24 * 60 * 60 * 1000);
-
             // Hide loading overlay
             const overlay = document.getElementById('loading-overlay');
             overlay.style.opacity = '0';
             setTimeout(() => overlay.remove(), 1000);
-
             renderCategory();
-
             // Setup timers — increased for more reading time
             setInterval(nextSlide, 10000);   // scroll news every 10 seconds
             setInterval(nextCategory, 60000); // switch category every 60 seconds
-
             // Progress bar logic (60 seconds total)
             setInterval(() => {
                 if (!isHovered && !isModalOpen && !isPaused) {
@@ -1088,12 +961,10 @@
                     document.getElementById('progress-bar').style.width = `${progress}%`;
                 }
             }, 100);
-
             // Hover to pause
             const newsArea = document.querySelector('.news-area');
             newsArea.addEventListener('mouseenter', () => isHovered = true);
             newsArea.addEventListener('mouseleave', () => isHovered = false);
-
             // Touch Panel Modal Interactions
             document.getElementById('news-track').addEventListener('click', (e) => {
                 const card = e.target.closest('.news-card');
@@ -1103,24 +974,20 @@
                     if (article) openModal(article);
                 }
             });
-
             document.getElementById('news-modal').addEventListener('click', (e) => {
                 if (e.target.id === 'news-modal' || e.target.classList.contains('close-btn')) {
                     closeModal();
                 }
             });
         }
-
         /* ── Interactive ON / OFF ── */
         let isPaused = false;
-
         function setInteractive(on) {
             isPaused = on;
             const btnOn  = document.getElementById('btn-on');
             const btnOff = document.getElementById('btn-off');
             const controls = document.getElementById('interactive-controls');
             const launchTrack = document.querySelector('.launch-track');
-
             if (on) {
                 // Interactive ON — pause auto-cycling, show nav arrows
                 btnOn.classList.add('active');
@@ -1135,9 +1002,7 @@
                 if (launchTrack) launchTrack.style.animationPlayState = 'running';
             }
         }
-
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
-
-</html>
+</html
